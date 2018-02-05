@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
         wget \
         python \
         python-dev \
-		python-pip \
-		python-setuptools \
+        python-pip \
+        python-setuptools \
         && \
     apt-get clean && \
     apt-get autoremove && \
