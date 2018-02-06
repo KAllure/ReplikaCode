@@ -64,14 +64,14 @@ The code is flexible and allows to condition a response by an arbitrary categori
 
 ## Quick start
 
-Run a CPU-only pre-built docker image & start the CakeChat serving the model on 8080 port:
+Run the CPU-only pre-built docker image & start the CakeChat serving the model on 8080 port:
 
 ```(bash)
 docker run --name cakechat-dev -p 127.0.0.1:8080:8080 -it lukalabs/cakechat:latest \
     bash -c "python bin/cakechat_server.py"
 ```
 
-(Or) with the GPU-enabled image:
+(Or) using the GPU-enabled image:
 
 ```(bash)
 nvidia-docker run --name cakechat-gpu-dev -p 127.0.0.1:8080:8080 -it lukalabs/cakechat-gpu:latest \
