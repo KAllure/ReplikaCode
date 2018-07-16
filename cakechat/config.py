@@ -15,7 +15,7 @@ S3_W2V_REMOTE_DIR = 'w2v_models'  # S3 remote directory with pre-trained w2v mod
 # data params
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')  # Directory to store all the data
 # e.g. datasets, models, indices
-NN_MODELS_DIR = os.path.join(DATA_DIR, 'nn_models')
+NN_MODELS_DIR = os.path.join(DATA_DIR, 'nn_models')  # Path to a directory for saving and restoring dialog models
 PROCESSED_CORPUS_DIR = os.path.join(DATA_DIR, 'corpora_processed')  # Path to a processed corpora datasets
 TOKEN_INDEX_DIR = os.path.join(DATA_DIR, 'tokens_index')  # Path to a prepared tokens index file
 CONDITION_IDS_INDEX_DIR = os.path.join(DATA_DIR, 'conditions_index')  # Path to a prepared conditions index file
@@ -65,7 +65,7 @@ BATCH_SIZE = 192  # Default batch size which fits into 8GB of GPU memory
 SHUFFLE_TRAINING_BATCHES = True  # Shuffle training batches in the dataset each epoch
 EPOCHS_NUM = 100  # Total epochs num
 GRAD_CLIP = 5.0  # Gradient clipping passed into theano.gradient.grad_clip()
-LEARNING_RATE = 1.0
+LEARNING_RATE = 1.0  # Learning rate for the chosen optimizer (currently using Adadelta, see model.py)
 
 # model params
 NN_MODEL_PREFIX = 'cakechat'  # specify prefix to be prepended to model's name
