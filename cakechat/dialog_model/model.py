@@ -3,7 +3,6 @@ from collections import OrderedDict
 
 import lasagne
 import numpy as np
-from six.moves import xrange
 import theano
 import theano.tensor as T
 from lasagne.init import Normal
@@ -155,8 +154,8 @@ class CakeChatModel(object):
 
         self._net['input_y'] = InputLayer(shape=(None, None), input_var=T.imatrix(name='input_y'), name='input_y')
 
-        # Infer these variables from data passed to computation graph
-        # since batch shape may differ in training and prediction phases
+        # Infer these variables from data passed to computation graph since batch shape may differ in training and
+        # prediction phases
         self._batch_size = self._net['input_x'].input_var.shape[0]
         self._input_context_size = self._net['input_x'].input_var.shape[1]
         self._input_seq_len = self._net['input_x'].input_var.shape[2]
