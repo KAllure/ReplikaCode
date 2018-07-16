@@ -204,7 +204,7 @@ def transform_w2v_model_to_matrix(w2v_model, index_to_token):
 
     token_to_index = {v: k for k, v in index_to_token.items()}
     tokens_num = len(index_to_token)
-    output = np.zeros((tokens_num, WORD_EMBEDDING_DIMENSION))
+    output = np.zeros((tokens_num, WORD_EMBEDDING_DIMENSION), dtype=np.float32)
     for token in index_to_token.values():
         idx = token_to_index[token]
         output[idx] = _get_token_vector(token, w2v_model)
