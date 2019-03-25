@@ -6,9 +6,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import argparse
 from collections import deque
 
-from cakechat.utils.env import init_theano_env
+from cakechat.utils.env import init_cuda_env
 
-init_theano_env()
+init_cuda_env()
 
 from cakechat.api.response import get_response
 from cakechat.config import INPUT_CONTEXT_SIZE, DEFAULT_CONDITION

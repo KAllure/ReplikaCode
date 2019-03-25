@@ -1,11 +1,13 @@
 import os
 import sys
 
+from cakechat.utils.env import get_gpu_id_by_gunicorn_worker_idx, set_keras_tf_session
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from cakechat.utils.env import init_theano_env
 
-init_theano_env()
+os.environ['CUDA_VISIBLE_DEVICES'] = get_gpu_id_by_gunicorn_worker_idx()
+set_keras_tf_session(gpu_memory_fraction=os.environ['GPU_MEMORY_FRACTION'])
 
 from cakechat.api.v1.server import app
 

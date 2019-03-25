@@ -1,10 +1,7 @@
-import os
 import json
-import codecs
+import os
 
-from six import iteritems
-
-from cakechat.config import PROCESSED_CORPUS_DIR, TOKEN_INDEX_DIR, CONDITION_IDS_INDEX_DIR
+from cakechat.config import PROCESSED_CORPUS_DIR, TOKEN_INDEX_DIR, CONDITION_IDS_INDEX_DIR, BASE_CORPUS_NAME
 
 
 def get_processed_corpus_path(corpus_name):
@@ -20,8 +17,14 @@ def get_index_to_condition_path(processed_corpus_name):
 
 
 def load_index_to_item(items_index_path):
-    with codecs.open(items_index_path, 'r', 'utf-8') as item_index_fh:
+    with open(items_index_path, 'r', encoding='utf-8') as item_index_fh:
         index_to_item = json.load(item_index_fh)
-        index_to_item = {int(k): v for k, v in iteritems(index_to_item)}
+        index_to_item = {int(k): v for k, v in index_to_item.items()}
 
     return index_to_item
+
+
+def get_vocab_size(corpus_name=BASE_CORPUS_NAME):
+    index_to_token_path = get_index_to_token_path(corpus_name)
+    index_to_token = load_index_to_item(index_to_token_path)
+    return len(index_to_token)

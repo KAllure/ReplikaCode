@@ -37,7 +37,7 @@ def get_tools_logger(name):
 
 
 def _get_laconic_logger():
-    return get_tools_logger('laconic_logger')
+    return get_tools_logger('cakechat.laconic_logger')
 
 
 class WithLogger(object):

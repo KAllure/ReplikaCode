@@ -131,7 +131,7 @@ That's it! Now you can train your model and chat with it.
 If you don't want to deal with docker images and containers, you can always simply run (with `sudo`, `--user` or inside your **[virtualenv](https://virtualenv.pypa.io/en/stable/)**):
 
 ```(bash)
-pip install -r requirements.txt
+pip install -r requirements.txt --process-dependency-links
 ```
 
 Most likely this will do the job.
@@ -142,7 +142,7 @@ Most likely this will do the job.
 
 ### Using a pre-trained model
 
-Run `python tools/download_model.py` to download our pre-trained model.
+Run `python tools/fetch.py` to download our pre-trained model.
 
 The model is trained with **context size 3** where
 the encoded sequence contains **30 tokens or less** and
@@ -157,16 +157,6 @@ Then we marked out each utterance with our emotions classifier that predicts one
 5 emotions: "neutral", "joy", "anger", "sadness" and "fear".
 To mark-up your own corpus with emotions you can use, for example, [DeepMoji tool](https://github.com/bfelbo/DeepMoji)
 or any other emotions classifier that you have.
-
-#### Initalizing model weights from file
-For some tools (for example [`tools/train.py`](tools/train.py)) you can specify the path to model's initialization weights via `--init_weights` argument.
-
-The weights may come from a trained CakeChat model or from a model with a different architecture.
-In the latter case some parameters of Cakechat model may be left without initialization:
-a parameter will be initialized with a saved value if the parameter's name and shape are
-identical to the saved parameter, otherwise the parameter will keep its default initialization weights.
-
-See `load_weights` function for the details.
 
 ### Training your own model
 
@@ -207,7 +197,7 @@ python bin/cakechat_server.py
 Specify `USE_GPU=<GPU_ID>` environment variable if you want to use a certain GPU.
 
 Wait until the model is compiled.
-**Don't forget to run [`tools/download_model.py`](tools/download_model.py) prior to running [`bin/cakechat_server.py`](bin/cakechat_server.py) if you want to start an API with our pre-trained model.**
+**Don't forget to run [`tools/fetch.py`](tools/fetch.py) prior to running [`bin/cakechat_server.py`](bin/cakechat_server.py) if you want to start an API with our pre-trained model.**
 
 To make sure everything works fine, test the model on the following conversation:
 
@@ -286,7 +276,7 @@ You can also test your model in a Telegram bot:
 * [`bin/cakechat_server.py`](bin/cakechat_server.py) - 
 Runs an HTTP-server that returns response messages of the model given dialog contexts and an emotion. See [run section](#gunicorn-http-server) for details.
 * [`tools/train.py`](tools/train.py) - 
-Trains the model on your data. You can specify the path to model's initialization weights via `--init_weights` argument. Also use the `--reverse` flag to train the model used in "\*-reranking" response generation algorithms for more accurate predictions.
+Trains the model on your data. You can use the `--reverse` option to train the model used in "\*-reranking" response generation algorithms for more accurate predictions.
 * [`tools/prepare_index_files.py`](tools/prepare_index_files.py) - 
 Prepares index for the most commonly used tokens and conditions. Use this script before training the model.
 * [`tools/quality/ranking_quality.py`](tools/quality/ranking_quality.py) - 
@@ -303,7 +293,7 @@ Note that you should have a reverse-model in the `data/nn_models` directory, if 
 Generates predictions for a given condition value.
 * [`tools/test_api.py`](tools/test_api.py) - 
 Example code to send requests to a running HTTP-server.
-* [`tools/download_model.py`](tools/download_model.py) - 
+* [`tools/fetch.py`](tools/fetch.py) -
 Downloads the pre-trained model and index files associated with it. Also compiles the whole model once to create Theano cache.
 * [`tools/telegram_bot.py`](tools/telegram_bot.py) - 
 Runs a Telegram bot that uses a trained model.
