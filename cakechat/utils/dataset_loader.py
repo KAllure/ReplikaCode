@@ -13,10 +13,10 @@ from cakechat.utils.data_structures import create_namedtuple_instance
 from cakechat.utils.data_types import Dataset
 from cakechat.utils.files_utils import load_file, is_non_empty_file
 from cakechat.utils.logger import get_logger
+from cakechat.utils.profile import timer
 from cakechat.utils.text_processing import get_tokens_sequence, replace_out_of_voc_tokens, \
     get_processed_corpus_path, load_processed_dialogs_from_json, FileTextLinesIterator, \
     get_dialog_lines_and_conditions, ProcessedLinesIterator, get_alternated_dialogs_lines
-from luka_utils.profile import timer
 
 _logger = get_logger(__name__)
 

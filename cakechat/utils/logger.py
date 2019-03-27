@@ -1,6 +1,7 @@
 import logging
 import logging.config
 
+
 logging.config.dictConfig({
     'version': 1,
     'disable_existing_loggers': False,
@@ -37,7 +38,7 @@ def get_tools_logger(name):
 
 
 def _get_laconic_logger():
-    return get_tools_logger('cakechat.laconic_logger')
+    return get_tools_logger('laconic_logger')
 
 
 class WithLogger(object):
@@ -46,3 +47,4 @@ class WithLogger(object):
 
 
 laconic_logger = _get_laconic_logger()
+()

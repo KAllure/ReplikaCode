@@ -2,8 +2,6 @@ import argparse
 import os
 import sys
 
-from cakechat.utils.s3 import S3FileResolver
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import random
@@ -30,10 +28,10 @@ from cakechat.utils.dataset_loader import get_validation_data_id, get_validation
     get_validation_dataset_name_to_data, get_training_dataset
 from cakechat.utils.files_utils import is_non_empty_file, FileNotFoundException
 from cakechat.utils.logger import get_tools_logger
+from cakechat.utils.s3 import S3FileResolver
 from cakechat.utils.text_processing import get_processed_corpus_path, get_index_to_token_path, \
     get_index_to_condition_path, load_index_to_item
-from cakechat.utils.w2v import get_w2v_model
-from cakechat.utils.w2v.model import get_w2v_model_id
+from cakechat.utils.w2v.model import get_w2v_model_id, get_w2v_model
 
 _logger = get_tools_logger(__file__)
 

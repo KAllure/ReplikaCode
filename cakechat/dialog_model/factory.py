@@ -16,15 +16,15 @@ from cakechat.utils.w2v.model import get_w2v_model_id
 
 def _get_index_to_token(fetch_from_s3):
     index_to_token_path = get_index_to_token_path(BASE_CORPUS_NAME)
+    file_name = os.path.basename(index_to_token_path)
     if fetch_from_s3:
         tokens_idx_resolver = S3FileResolver(index_to_token_path, S3_MODELS_BUCKET_NAME, S3_TOKENS_IDX_REMOTE_DIR)
         if not tokens_idx_resolver.resolve():
-            raise FileNotFoundException('Can\'t get index_to_token because file does not exist at S3')
+            raise FileNotFoundException('No such file on S3: {}'.format(file_name))
     else:
         if not os.path.exists(index_to_token_path):
-            raise FileNotFoundException('Can\'t get index_to_token because file does not exist. '
-                                        'Run tools/fetch.py first to get all required files or construct '
-                                        'it yourself.')
+            raise FileNotFoundException('No such file: {}'.format(file_name) +
+                                        'Run "python tools/fetch.py" first to get all necessary files.')
 
     return load_index_to_item(index_to_token_path)
 
@@ -35,7 +35,7 @@ def _get_index_to_condition(fetch_from_s3):
         index_to_condition_resolver = S3FileResolver(index_to_condition_path, S3_MODELS_BUCKET_NAME,
                                                      S3_CONDITIONS_IDX_REMOTE_DIR)
         if not index_to_condition_resolver.resolve():
-            raise FileNotFoundException('Can\'t get index_to_condition because file does not exist at S3')
+            raise FileNotFoundException('Can\'t get index_to_condition because file does not exist on S3')
     else:
         if not os.path.exists(index_to_condition_path):
             raise FileNotFoundException('Can\'t get index_to_condition because file does not exist. '

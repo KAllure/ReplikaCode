@@ -9,7 +9,7 @@ INTX = 'uint16'  # use unsigined 16-bits int representation for memory efficienc
 RANDOM_SEED = 42  # Fix the random seed to a certain value to make everything reproducible
 
 # AWS S3 params
-S3_MODELS_BUCKET_NAME = 'cakechat-internal-data'  # S3 bucket with all the data
+S3_MODELS_BUCKET_NAME = 'cake-chat-data'  # S3 bucket with all the data
 S3_NN_MODEL_REMOTE_DIR = 'nn_models'  # S3 remote directory with models itself
 S3_TOKENS_IDX_REMOTE_DIR = 'tokens_index'  # S3 remote directory with tokens index
 S3_CONDITIONS_IDX_REMOTE_DIR = 'conditions_index'  # S3 remote directory with conditions index
@@ -22,7 +22,7 @@ TOKEN_INDEX_DIR = os.path.join(DATA_PATH, 'tokens_index')  # Path to prepared to
 CONDITION_IDS_INDEX_DIR = os.path.join(DATA_PATH, 'conditions_index')  # Path to prepared conditions index directory
 
 # train & val data params
-BASE_CORPUS_NAME = 'twitter_dialogs'  # Basic corpus name prefix
+BASE_CORPUS_NAME = 'processed_dialogs'  # Basic corpus name prefix
 TRAIN_CORPUS_NAME = 'train_' + BASE_CORPUS_NAME  # Training dataset filename prefix
 CONTEXT_SENSITIVE_VAL_CORPUS_NAME = 'val_' + BASE_CORPUS_NAME  # Validation dataset filename prefix for intermediate
 CONTEXT_SENSITIVE_TEST_CORPUS_NAME = 'test_' + BASE_CORPUS_NAME  # Testing dataset for final metrics calculation

@@ -5,12 +5,11 @@ from gensim.models import Word2Vec
 from cakechat.config import TRAIN_CORPUS_NAME, VOCABULARY_MAX_SIZE, WORD_EMBEDDING_DIMENSION, W2V_WINDOW_SIZE, \
     S3_MODELS_BUCKET_NAME, S3_W2V_REMOTE_DIR, USE_SKIP_GRAM, MIN_WORD_FREQ, TOKEN_REPRESENTATION_SIZE, WINDOW_SIZE
 from cakechat.dialog_model.model_utils import ModelLoaderException
-from cakechat.utils.files_utils import DummyFileResolver
+from cakechat.utils.files_utils import DummyFileResolver, ensure_dir
 from cakechat.utils.logger import get_logger
 from cakechat.utils.s3 import S3FileResolver
 from cakechat.utils.tee_file import file_buffered_tee
-from cakechat.utils.w2v import get_w2v_model as _get_w2v_model, get_w2v_model_name, get_w2v_params_str, \
-    get_w2v_model_path
+from cakechat.utils.w2v import get_w2v_model_name, get_w2v_params_str, get_w2v_model_path
 
 _WORKERS_NUM = multiprocessing.cpu_count()
 
@@ -45,6 +44,7 @@ def _train_model(tokenized_lines, voc_size, vec_size, window_size, skip_gram):
 
 def _save_model(model, model_path):
     _logger.info('Saving model to {}'.format(model_path))
+    ensure_dir(os.path.dirname(model_path))
     model.save(model_path, separately=[])
     _logger.info('Model has been saved')
 

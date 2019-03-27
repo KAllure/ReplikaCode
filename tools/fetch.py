@@ -14,7 +14,7 @@ init_cuda_env()
 
 from cakechat.dialog_model.factory import get_trained_model
 from cakechat.utils.logger import get_tools_logger
-from cakechat.utils.w2v import get_w2v_model
+from cakechat.utils.w2v.model import get_w2v_model
 
 _logger = get_tools_logger(__file__)
 
