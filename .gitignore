@@ -9,5 +9,6 @@ build/*
 tags
 venv
 data
+results
 !data/corpora_processed
 !data/quality
